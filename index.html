@@ -408,14 +408,21 @@ button appears on the SELECTOR screen so you can momentarily inhibit the AGL cal
 <!-- IMAGE PLACEHOLDER: AGL ALERT settings tab — enable, altitude, direction, status -->
 
 <h3>Automatic Field Elevation</h3>
-<p>AGL reference now sets itself. While the aircraft is on the ground (low groundspeed) with usable GPS
-vertical accuracy, AltitudeAlert captures the field elevation automatically from GPS &mdash; no manual entry
-required. The value is smoothed, frozen once airborne, and re-captured on rollout at your destination. The AGL
-ALERT screen shows the current field-elevation source:</p>
+<p>AGL reference sets itself, and it follows the airplane through the flight:</p>
+<ul>
+  <li><strong>On the ground</strong> &mdash; while stationary or taxiing with usable GPS vertical accuracy,
+      AltitudeAlert captures the field elevation automatically from GPS (smoothed). This happens at departure,
+      and again on rollout at your destination.</li>
+  <li><strong>Airborne</strong> &mdash; AltitudeAlert references the worldwide airport database for your
+      current position. On approach this is your <strong>destination</strong> field, so the descent callout
+      fires at the correct height above the field you&rsquo;re landing at &mdash; not the field you departed.</li>
+</ul>
+<p>No manual entry is required. The AGL ALERT screen shows the current field-elevation source so you can
+confirm it at a glance:</p>
 <ul>
   <li><code>Field Elev: 1234&prime; (GPS)</code> &mdash; captured automatically on the ground.</li>
-  <li><code>Field Elev: 1234&prime; (airport DB)</code> &mdash; from the worldwide airport database when
-      airborne with no ground capture yet (for example, near your destination).</li>
+  <li><code>Field Elev: 1234&prime; (airport DB)</code> &mdash; the nearest airport to your current position,
+      used in flight (your destination on approach).</li>
   <li><code>Field Elev: 1234&prime; (manual)</code> &mdash; the value set in Controls, used as a fallback.</li>
   <li><code>not captured</code> &mdash; taxi or hold on the ground briefly to capture it.</li>
 </ul>
