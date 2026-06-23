@@ -99,9 +99,11 @@ or Facebook (<a href="https://facebook.com/altitudealert">facebook.com/altitudea
 
 <div class="box new">
   <span class="label">NEW IN VERSION 3.4</span>
-  <strong>AGL Proximity Alert</strong> &mdash; an independent ground-proximity callout at 500&prime; or
-  600&prime; AGL, with field elevation captured automatically from GPS, worldwide airport coverage, and a
-  built-in ground test. See <a href="#agl">AGL Proximity Alert</a>.
+  <strong>GAGL Proximity Alert</strong> (GPS Above Ground Level) &mdash; an independent ground-proximity callout
+  at 500&prime; or 600&prime; AGL, with field elevation captured automatically from GPS, worldwide airport
+  coverage, and a built-in ground test. When enabled, GAGL takes over the near-ground landing callouts. Landing
+  field elevation for standard alerting is now also set automatically from the airport database. See
+  <a href="#agl">GAGL Proximity Alert</a>.
 </div>
 
 <p class="small">This guide applies to AltitudeAlert on both iPhone and iPad. The two apps share the
@@ -120,7 +122,7 @@ it is called out inline.</p>
     <li><a href="#controls-baro">Controls &mdash; Atmospheric &amp; Field (Barometric)</a></li>
     <li><a href="#damda">Setting DA/MDA Minimums</a></li>
     <li><a href="#gps-reference">GPS Altitude Reference</a></li>
-    <li><a href="#agl">AGL Proximity Alert <span class="small">(new)</span></a></li>
+    <li><a href="#agl">GAGL Proximity Alert <span class="small">(new)</span></a></li>
     <li><a href="#alt-hold">ALT HOLD Mode</a></li>
     <li><a href="#alert-margins">Alert Margins</a></li>
     <li><a href="#vnav">VNAV (Vertical Navigation)</a></li>
@@ -288,8 +290,18 @@ When you reach the SELECTOR altitude, the box turns green.</p>
 <h4><span class="pill land">LAND</span> button</h4>
 <p>Engages Landing Mode. The target altitude is zeroed and the display turns magenta. AltitudeAlert calls out
 1000&prime; AGL and 500&prime; AGL for situational awareness, and &mdash; if Retractable Landing Gear is
-enabled in App Settings &mdash; &ldquo;check landing gear down&rdquo; after the 500&prime; call. Accuracy
-depends on the correct landing Field Elevation (see <a href="#controls-baro">Controls</a>).</p>
+enabled in App Settings &mdash; &ldquo;check landing gear down&rdquo; after the 500&prime; call. On approach,
+the landing Field Elevation is now set automatically from the airport database (see <a href="#controls-baro">Controls</a>),
+so the callouts fire at the correct height above your destination without manual entry.</p>
+
+<div class="box new">
+  <span class="label">WITH GAGL ENABLED</span>
+  When the <a href="#agl">GAGL Proximity Alert</a> is enabled, it takes over the near-ground callouts:
+  the standard 1000&prime; and 500&prime; landing-mode callouts are suppressed, and (if Retractable Landing
+  Gear is enabled) the &ldquo;check landing gear down&rdquo; reminder is folded into the GAGL descent callout
+  instead. This keeps GAGL as the single voice near the ground. With GAGL off, Landing Mode behaves as
+  described above.
+</div>
 
 <h4><span class="pill damda">DA/MDA</span> button</h4>
 <p>Sets Decision Altitude (DA) or Minimum Descent Altitude (MDA) for an instrument approach. See
@@ -339,10 +351,14 @@ unit switch.</p>
 and configurations that use the temperature correction.)</p>
 
 <h4>Field Controls &mdash; Field Elevation</h4>
-<p>Field Elevation is the airport elevation used as the reference for landing-mode and AGL calculations. Set
-the Takeoff/Landing Elevation with the + / &minus; controls, or tap <strong>DFLT</strong> to load your saved
-default field elevation. The Field Controls remain available whenever you need to set or adjust the
-destination field elevation.</p>
+<p>Field Elevation is the airport elevation used as the reference for landing-mode and GAGL calculations.
+Takeoff elevation is captured automatically on the ground, and on approach the <strong>landing</strong> field
+elevation is set automatically from the worldwide airport database for your destination &mdash; the label
+reads <em>Landing Elev &mdash; Auto (Airport DB)</em>. No manual entry is required in normal use.</p>
+<p>The Field Controls remain available as a manual override whenever you want to set the elevation yourself:
+adjust the Takeoff/Landing Elevation with the + / &minus; controls, or tap <strong>DFLT</strong> to load your
+saved default field elevation. A manual entry freezes the automatic value; automatic capture re-arms once
+you&rsquo;re back on the ground.</p>
 
 <!-- ============================================================ -->
 <h2 id="damda">Setting DA/MDA Minimums</h2>
@@ -383,32 +399,37 @@ surface, occasionally an erroneous alert may occur; verify the altimeter setting
 <!-- IMAGE PLACEHOLDER: SELECTOR / Controls in GPS reference (Ref Alt — GPS) -->
 
 <!-- ============================================================ -->
-<h2 id="agl">AGL Proximity Alert <span class="small">(new in 3.4)</span></h2>
+<h2 id="agl">GAGL Proximity Alert <span class="small">(new in 3.4)</span></h2>
 
-<p>The <strong>AGL Proximity Alert</strong> is an independent ground-proximity callout that announces when you
-climb or descend through a selected height above ground level (AGL). It runs on its own &mdash; in the
-foreground and the background &mdash; whether or not you have started standard altitude alerting.</p>
+<p>The <strong>GAGL Proximity Alert</strong> (GPS Above Ground Level) is an independent ground-proximity callout
+that announces when you climb or descend through a selected height above ground level (AGL). It runs on its
+own &mdash; in the foreground and the background &mdash; whether or not you have started standard altitude
+alerting.</p>
 
 <div class="box new">
   <span class="label">HOW IT&rsquo;S DIFFERENT</span>
-  AGL Proximity Alert is completely separate from SELECTOR / standard alerting. You do not need to select an
+  GAGL Proximity Alert is completely separate from SELECTOR / standard alerting. You do not need to select an
   altitude or start alerting for it to work &mdash; just enable it and make sure field elevation is available.
+  When GAGL is enabled it also becomes the single voice near the ground: the standard Landing-Mode 1000&prime;
+  and 500&prime; callouts are suppressed in its favor (see the <a href="#selector-baro">LAND</a> button).
 </div>
 
 <h3>Enabling &amp; configuring</h3>
-<p>Open the <strong>AGL ALERT</strong> tab and turn on <strong>Enable AGL Alert</strong>. Then choose:</p>
+<p>Open the <strong>GAGL ALERT</strong> tab (the second tab, just after SELECTOR) and turn on
+<strong>Enable GAGL Alert</strong>. Then choose:</p>
 <ul>
   <li><strong>Alert Altitude</strong> &mdash; <code>500&prime; AGL</code> or <code>600&prime; AGL</code>.</li>
   <li><strong>Alert Direction</strong> &mdash; <code>Climb</code>, <code>Descent</code>, or <code>Both</code>.
       Climb fires once on the way up, Descent once on the way down, Both fires on each crossing.</li>
 </ul>
-<p>When enabled, an <strong>AGL ALERT</strong> badge appears on the tab, and an <span class="pill">INHBT AGL</span>
-button appears on the SELECTOR screen so you can momentarily inhibit the AGL callout when desired.</p>
+<p>When enabled, an <strong>ON</strong> badge appears on the GAGL ALERT tab, and an <span class="pill">INHBT GAGL</span>
+button appears on the SELECTOR screen so you can momentarily inhibit the GAGL callout when desired (it reads
+<span class="pill">GAGL INHBTD</span> while inhibited).</p>
 
-<!-- IMAGE PLACEHOLDER: AGL ALERT settings tab — enable, altitude, direction, status -->
+<!-- IMAGE PLACEHOLDER: GAGL ALERT settings tab — enable, altitude, direction, status -->
 
 <h3>Automatic Field Elevation</h3>
-<p>AGL reference sets itself, and it follows the airplane through the flight:</p>
+<p>GAGL reference sets itself, and it follows the airplane through the flight:</p>
 <ul>
   <li><strong>On the ground</strong> &mdash; while stationary or taxiing with usable GPS vertical accuracy,
       AltitudeAlert captures the field elevation automatically from GPS (smoothed). This happens at departure,
@@ -417,7 +438,7 @@ button appears on the SELECTOR screen so you can momentarily inhibit the AGL cal
       current position. On approach this is your <strong>destination</strong> field, so the descent callout
       fires at the correct height above the field you&rsquo;re landing at &mdash; not the field you departed.</li>
 </ul>
-<p>No manual entry is required. The AGL ALERT screen shows the current field-elevation source so you can
+<p>No manual entry is required. The GAGL ALERT screen shows the current field-elevation source so you can
 confirm it at a glance:</p>
 <ul>
   <li><code>Field Elev: 1234&prime; (GPS)</code> &mdash; captured automatically on the ground.</li>
@@ -429,27 +450,28 @@ confirm it at a glance:</p>
 
 <h3>Worldwide airport coverage</h3>
 <p>For the destination case &mdash; when you are airborne and approaching a field &mdash; AltitudeAlert can
-reference a global airport elevation database so AGL works outside the U.S. as well. This database refreshes
+reference a global airport elevation database so GAGL works outside the U.S. as well. This database refreshes
 automatically alongside your NAV Data updates and is kept entirely separate from the published NAV Data used
-for VNAV. You can also refresh it on demand with <strong>Refresh Airport Data</strong> on the AGL ALERT tab.</p>
+for VNAV. You can also refresh it on demand with <strong>Refresh Airport Data</strong> on the GAGL ALERT tab.</p>
 
 <h3>Audio callouts</h3>
 <p>When you cross the selected altitude, AltitudeAlert speaks &ldquo;Five Hundred&rdquo; or &ldquo;Six
 Hundred&rdquo; &mdash; in the foreground (live speech) and in the background (as a spoken notification). A
-banner accompanies the background callout.</p>
+banner accompanies the background callout. On a <strong>descent</strong> callout, if Retractable Landing Gear
+is enabled in App Settings, &ldquo;check landing gear down&rdquo; is appended to the GAGL announcement.</p>
 
 <h3>Built-in self-test</h3>
-<p>You can verify the AGL alert on the ground without flying. On the AGL ALERT tab, tap
-<strong>Test AGL Alert</strong>. AltitudeAlert jumps to the SELECTOR screen and simulates a climb and descent
+<p>You can verify the GAGL alert on the ground without flying. On the GAGL ALERT tab, tap
+<strong>Test GAGL Alert</strong>. AltitudeAlert jumps to the SELECTOR screen and simulates a climb and descent
 through your selected altitude, showing a live readout of the simulated GPS altitude, field elevation, and AGL
 value. The readout flashes <strong>ALERT FIRED</strong> at the exact moment the alert triggers, and you hear
 the matching callout &mdash; confirming the alert is tied to the altitude data.</p>
 
-<!-- IMAGE PLACEHOLDER: AGL self-test live readout on the SELECTOR screen -->
+<!-- IMAGE PLACEHOLDER: GAGL self-test live readout on the SELECTOR screen -->
 
 <div class="box caution">
   <span class="label">*** CAUTION ***</span>
-  AGL Proximity Alert is an aid to situational awareness only. It depends on GPS altitude and field elevation
+  GAGL Proximity Alert is an aid to situational awareness only. It depends on GPS altitude and field elevation
   and is <strong>not</strong> a substitute for a certified terrain awareness system or for see-and-avoid and
   published procedures. Maintain safe and legal terrain and obstacle clearance at all times.
 </div>
@@ -639,7 +661,7 @@ the style chosen in iOS Settings.</p>
     <tr><td>&ldquo;Approaching Minimums&rdquo;</td><td class="ck"></td><td class="ck">&times;</td></tr>
     <tr><td>&ldquo;Approaching Minimums. Check Landing Gear Down&rdquo;</td><td class="ck"></td><td class="ck">&times;</td></tr>
     <tr><td>&ldquo;Minimums&rdquo;</td><td class="ck">&times;</td><td class="ck">&times;</td></tr>
-    <tr><td>AGL Proximity Alert &mdash; &ldquo;Five/Six Hundred&rdquo; <span class="small">(new)</span></td><td class="ck">&times;</td><td class="ck">&times;</td></tr>
+    <tr><td>GAGL Proximity Alert &mdash; &ldquo;Five/Six Hundred&rdquo; (descent adds &ldquo;Check Landing Gear Down&rdquo;) <span class="small">(new)</span></td><td class="ck">&times;</td><td class="ck">&times;</td></tr>
     <tr><td>Pressure Sensor Failure (iPad)</td><td class="ck">&times;</td><td class="ck">&times;</td></tr>
     <tr><td>GPS Accuracy Degradation</td><td class="ck">&times;</td><td class="ck">&times;</td></tr>
     <tr><td>GPS Accuracy Restored</td><td class="ck"></td><td class="ck">&times;</td></tr>
@@ -663,10 +685,10 @@ the style chosen in iOS Settings.</p>
 <p>Toggle GPS Altitude Reference in the iOS Settings app and return to AltitudeAlert; the change now applies on
 return. If the display still shows the previous reference, fully background and reopen the app.</p>
 
-<h3>AGL Alert isn&rsquo;t firing</h3>
-<p>Confirm AGL Alert is enabled, the AGL ALERT badge is showing, and a field elevation is available (the AGL
+<h3>GAGL Alert isn&rsquo;t firing</h3>
+<p>Confirm GAGL Alert is enabled, the GAGL ALERT badge is showing, and a field elevation is available (the GAGL
 ALERT screen shows the source). On the ground, taxi or hold briefly with a clear view of the sky so GPS can
-capture field elevation. Use <strong>Test AGL Alert</strong> to verify the alert path.</p>
+capture field elevation. Use <strong>Test GAGL Alert</strong> to verify the alert path.</p>
 
 <p class="updated">AltitudeAlert User Guide &middot; Version 3.4</p>
 
